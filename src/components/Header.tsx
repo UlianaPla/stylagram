@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { ReactComponent as Explore } from "../explore.svg";
-import { ReactComponent as Avatar } from "../avatar.svg";
-import { ReactComponent as Compass } from "../compass.svg";
+import { Explore } from "./svg/Explore";
+import { Avatar } from "./svg/Avatar";
+import { Compass } from "./svg/Compass";
 
 const Nav = styled.div`
   background-color: #fff;

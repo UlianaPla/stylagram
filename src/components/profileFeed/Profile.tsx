@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useAppSelector, useAppDispatch } from "../../hooks";
 import { likePost, selectFeed, fetchPosts } from "./feedSlice";
@@ -77,13 +77,20 @@ const ImagesWrapper = styled.div`
   flex-wrap: wrap;
 `;
 
+const CenteredButton = styled(EditProfileButton)`
+  margin: auto;
+`;
+
 function Profile() {
   const feed = useAppSelector(selectFeed);
   const dispatch = useAppDispatch();
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
-    dispatch(fetchPosts());
-  }, []);
+    console.log("fetch");
+    dispatch(fetchPosts(page));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [page]);
 
   return (
     <ProfileContainer>
@@ -126,6 +133,9 @@ function Profile() {
             onClick={(id) => dispatch(likePost(id))}
           />
         ))}
+        <CenteredButton onClick={() => setPage(page + 1)}>
+          Load more
+        </CenteredButton>
       </ImagesWrapper>
     </ProfileContainer>
   );

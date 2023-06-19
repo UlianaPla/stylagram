@@ -7,8 +7,8 @@ import { FeedItem } from "../types";
 
 const ImgContainer = styled.div`
   position: relative;
-  flex-basis: 100%;
   flex-basis: calc(33.333% - 20px);
+  height: 300px;
   margin: 10px;
   cursor: pointer;
   transition: 0.5s all ease-in;
@@ -45,6 +45,8 @@ const ImgMeta = styled.div`
 const Img = styled.img`
   cursor: pointer;
   width: 100%;
+  height: 100%;
+  object-fit: cover;
 `;
 
 interface OwnProps {
@@ -58,7 +60,12 @@ const Image: React.FC<OwnProps> = ({ image, onClick }) => {
       <Img src={image.url} />
       <ImgMeta>
         <ImgIcons>
-          {image.isVideo ? <Play /> : <Heart />} {image.likes}
+          {image.isVideo ? (
+            <Play />
+          ) : (
+            <Heart isLikedByUser={image.isLikedByUser} />
+          )}
+          {image.likes}
         </ImgIcons>
         <ImgIcons>
           <Comment />
